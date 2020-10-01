@@ -12,6 +12,7 @@ import sys
 # It is recommended for users to keep this number greater than or equal to 10.
 precision = 10
 
+
 # This is the linear search that will occur after the search space has become smaller.
 def lin_search(left, right, A, target):
     for i in range(left, right + 1):
@@ -97,7 +98,7 @@ if __name__ == "__main__":
     result2 = rec_ternary_search(0, len(collection) - 1, collection, target)
 
     if result2 is not None:
-        print("Iterative search: {} found at positions: {}".format(target, result1))
-        print("Recursive search: {} found at positions: {}".format(target, result2))
+        print(f"Iterative search: {target} found at positions: {result1}")
+        print(f"Recursive search: {target} found at positions: {result2}")
     else:
         print("Not found")

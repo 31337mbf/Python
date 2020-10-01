@@ -1,10 +1,12 @@
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
 
 def imdb_top(imdb_top_n):
-    base_url = (f"https://www.imdb.com/search/title?title_type="
-                f"feature&sort=num_votes,desc&count={imdb_top_n}")
+    base_url = (
+        f"https://www.imdb.com/search/title?title_type="
+        f"feature&sort=num_votes,desc&count={imdb_top_n}"
+    )
     source = BeautifulSoup(requests.get(base_url).content, "html.parser")
     for m in source.findAll("div", class_="lister-item mode-advanced"):
         print("\n" + m.h3.a.text)  # movie's name

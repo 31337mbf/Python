@@ -1,4 +1,7 @@
-import sys, rsa_key_generator as rkg, os
+import os
+import sys
+
+from . import rsa_key_generator as rkg
 
 DEFAULT_BLOCK_SIZE = 128
 BYTE_SIZE = 256
@@ -6,7 +9,7 @@ BYTE_SIZE = 256
 
 def main():
     filename = "encrypted_file.txt"
-    response = input(r"Encrypte\Decrypt [e\d]: ")
+    response = input(r"Encrypt\Decrypt [e\d]: ")
 
     if response.lower().startswith("e"):
         mode = "encrypt"
@@ -92,7 +95,9 @@ def encryptAndWriteToFile(
     keySize, n, e = readKeyFile(keyFilename)
     if keySize < blockSize * 8:
         sys.exit(
-            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher requires the block size to be equal to or greater than the key size. Either decrease the block size or use different keys."
+            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
+            "requires the block size to be equal to or greater than the key size. "
+            "Either decrease the block size or use different keys."
             % (blockSize * 8, keySize)
         )
 
@@ -101,7 +106,7 @@ def encryptAndWriteToFile(
     for i in range(len(encryptedBlocks)):
         encryptedBlocks[i] = str(encryptedBlocks[i])
     encryptedContent = ",".join(encryptedBlocks)
-    encryptedContent = "%s_%s_%s" % (len(message), blockSize, encryptedContent)
+    encryptedContent = "{}_{}_{}".format(len(message), blockSize, encryptedContent)
     with open(messageFilename, "w") as fo:
         fo.write(encryptedContent)
     return encryptedContent
@@ -117,7 +122,9 @@ def readFromFileAndDecrypt(messageFilename, keyFilename):
 
     if keySize < blockSize * 8:
         sys.exit(
-            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher requires the block size to be equal to or greater than the key size. Did you specify the correct key file and encrypted file?"
+            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
+            "requires the block size to be equal to or greater than the key size. "
+            "Did you specify the correct key file and encrypted file?"
             % (blockSize * 8, keySize)
         )
 

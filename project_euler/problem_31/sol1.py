@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Coin sums
 Problem 31
@@ -46,7 +45,7 @@ def two_pound(x):
 
 
 def solution(n):
-    """Returns the number of different ways can £n be made using any number of
+    """Returns the number of different ways can n pence be made using any number of
     coins?
 
     >>> solution(500)

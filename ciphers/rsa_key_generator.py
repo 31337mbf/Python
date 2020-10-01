@@ -1,5 +1,9 @@
-import random, sys, os
-import rabin_miller as rabinMiller, cryptomath_module as cryptoMath
+import os
+import random
+import sys
+
+from . import cryptomath_module as cryptoMath
+from . import rabin_miller as rabinMiller
 
 
 def main():
@@ -35,19 +39,20 @@ def makeKeyFiles(name, keySize):
     ):
         print("\nWARNING:")
         print(
-            '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \nUse a different name or delete these files and re-run this program.'
+            '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \n'
+            "Use a different name or delete these files and re-run this program."
             % (name, name)
         )
         sys.exit()
 
     publicKey, privateKey = generateKey(keySize)
     print("\nWriting public key to file %s_pubkey.txt..." % name)
-    with open("%s_pubkey.txt" % name, "w") as fo:
-        fo.write("%s,%s,%s" % (keySize, publicKey[0], publicKey[1]))
+    with open("%s_pubkey.txt" % name, "w") as out_file:
+        out_file.write("{},{},{}".format(keySize, publicKey[0], publicKey[1]))
 
     print("Writing private key to file %s_privkey.txt..." % name)
-    with open("%s_privkey.txt" % name, "w") as fo:
-        fo.write("%s,%s,%s" % (keySize, privateKey[0], privateKey[1]))
+    with open("%s_privkey.txt" % name, "w") as out_file:
+        out_file.write("{},{},{}".format(keySize, privateKey[0], privateKey[1]))
 
 
 if __name__ == "__main__":

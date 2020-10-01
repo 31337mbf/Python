@@ -1,4 +1,5 @@
-import sys, random
+import random
+import sys
 
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -17,7 +18,7 @@ def main():
         mode = "decrypt"
         translated = decryptMessage(key, message)
 
-    print("\n%sion: \n%s" % (mode.title(), translated))
+    print("\n{}ion: \n{}".format(mode.title(), translated))
 
 
 def checkValidKey(key):

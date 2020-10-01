@@ -1,17 +1,18 @@
-from abc import abstractmethod
 import sys
+from abc import abstractmethod
 from collections import deque
+
 
 class LRUCache:
     """ Page Replacement Algorithm, Least Recently Used (LRU) Caching."""
 
-    dq_store = object() # Cache store of keys
-    key_reference_map = object() # References of the keys in cache
-    _MAX_CAPACITY: int = 10 # Maximum capacity of cache
+    dq_store = object()  # Cache store of keys
+    key_reference_map = object()  # References of the keys in cache
+    _MAX_CAPACITY: int = 10  # Maximum capacity of cache
 
     @abstractmethod
     def __init__(self, n: int):
-        """ Creates an empty store and map for the keys.
+        """Creates an empty store and map for the keys.
         The LRUCache is set the size n.
         """
         self.dq_store = deque()
@@ -19,15 +20,15 @@ class LRUCache:
         if not n:
             LRUCache._MAX_CAPACITY = sys.maxsize
         elif n < 0:
-            raise ValueError('n should be an integer greater than 0.')
+            raise ValueError("n should be an integer greater than 0.")
         else:
             LRUCache._MAX_CAPACITY = n
 
     def refer(self, x):
         """
-            Looks for a page in the cache store and adds reference to the set.
-            Remove the least recently used key if the store is full.
-            Update store to reflect recent access.
+        Looks for a page in the cache store and adds reference to the set.
+        Remove the least recently used key if the store is full.
+        Update store to reflect recent access.
         """
         if x not in self.key_reference_map:
             if len(self.dq_store) == LRUCache._MAX_CAPACITY:
@@ -46,10 +47,11 @@ class LRUCache:
 
     def display(self):
         """
-            Prints all the elements in the store.
+        Prints all the elements in the store.
         """
         for k in self.dq_store:
             print(k)
+
 
 if __name__ == "__main__":
     lru_cache = LRUCache(4)
